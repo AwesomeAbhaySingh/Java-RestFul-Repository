@@ -1,4 +1,4 @@
-bulk data save use batch system in hibernate
+1. bulk data save use batch system in hibernate
 
 public void saveBulkData(List<Student> studentList) {
 		if (Objects.isNull(studentList) || studentList.isEmpty()) {
@@ -18,3 +18,15 @@ public void saveBulkData(List<Student> studentList) {
 		session.close();
 
 	}
+
+
+2. if you want get random record in database use Hibernate Criteria then Follow this code
+
+
+public List<Student> saveBulkData(String name) {
+Criteria criteria = session.createCriteria(Table.class);
+criteria.add(Restrictions.eq("your database field name", put your value));
+criteria.add(Restrictions.sqlRestriction("1=1 order by rand()"));
+criteria.setMaxResults(1);
+return criteria.list();
+}
